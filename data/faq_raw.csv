@@ -1,0 +1,25 @@
+id,question,answer,category,views,date_added
+1,How do I register for courses?,"Log in to the student portal, open the Registration tab, and select your courses before the deadline.",Registration,"1,200",2026-09-01
+2,When is the registration deadline?,"Registration closes at the end of the second week of the semester.",registration ,950,2026-09-01
+3,I forgot my password. What should I do?,"Use the Forgot Password link on the portal login page and follow the email instructions.",Accounts,2300,2026-09-03
+4,How can I reset my login?,"Click Forgot Password on the login page. A reset link will be sent to your email.",ACCOUNTS,"1,850",2026-09-03
+5,Where is the library?,"The main library is next to the administration building and opens at 8:00 AM.",Campus,640,2026-09-05
+6,What are the library opening hours?,,Campus,410,2026-09-05
+7,How do I pay tuition fees?,"Fees are paid through the bank listed on the finance office notice board or the portal.",Fees,"3,100",2026-09-07
+8,Can I pay my fees in installments?,"Ask the finance office about the installment option before the payment deadline.",Fees,,2026-09-07
+9,How do I apply for a dormitory?,"Submit the dormitory request form to the student affairs office with a copy of your ID.",Housing,780,09/10/2026
+10,How do I connect to campus WiFi?,"Select the campus network, then sign in with your student ID and portal password.",IT,1500,2026-09-12
+10,How do I connect to campus WiFi?,"Select the campus network, then sign in with your student ID and portal password.",IT,1500,2026-09-12
+12,How is my GPA calculated?,"GPA is the sum of grade points times credit hours divided by total credit hours.",Grades,"2,050",2026-09-14
+13,When are final exams held?,"Final exam dates are posted on the academic calendar at the end of each semester.",exams,1100,2026-09-15
+14,Can I retake a failed course?,"Yes. Register for the course again in the next available semester.",Grades,525,2026-09-16
+15,  How do I join a student club?  ,"Visit the student affairs office or attend the club fair at the start of the semester.",Clubs,300,2026-09-18
+16,How do I get my transcript?,"Request it at the registrar office and pay the processing fee.",Registration,880,2026-09-20
+17,Where can I print documents?,"Printing is available at the library and the computer lab for a small fee.",Campus,15000,2026-09-21
+18,How do I report a lost student ID?,"Report it to the student affairs office and request a replacement card.",Accounts,215,not sure
+19,What is the attendance policy?,"Students must attend a minimum percentage of classes to sit the final exam.",exams,670,2026-09-24
+20,Is there a scholarship for top students?,"Ask the registrar about merit-based awards announced each year.",Fees,,2026-09-25
+21,How do I change my department?,"Submit a department change request to the registrar during the allowed period.",Registration,99999,2026-09-26
+22,Where can I find past exam papers?,"Some past papers are available in the library reading room.",Campus,350,2026-09-28
+23,How do I contact my instructor?,"Use the email listed in the course outline or visit during office hours.",,445,2026-09-29
+24,How do I join a student club?,"Visit the student affairs office or attend the club fair at the start of the semester.",Clubs,300,2026-09-18
