@@ -19,5 +19,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# I don't currently know this
+# I don't currently know these
+.
+..
 .vscode
