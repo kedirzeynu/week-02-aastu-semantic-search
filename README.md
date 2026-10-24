@@ -8,13 +8,13 @@ Built for AWS SBG @ AASTU AI/ML learning track, Week 2 task: Data, APIs & Embedd
 
 `week-02-aastu-semantic-search/data/faq_raw.csv` holds 24 sample university FAQs (raw, intentionally messy).
 
-|   Column   | Meaning |
-|------------|---------|
-| id         | FAQ number |
-| question   | The question text |
-| answer     | The answer text |
-| category   | Topic (Registration, Fees, ...) |
-| views      | How many times it was viewed |
+| Column | Meaning |
+|---|---|
+| id | FAQ number |
+| question | The question text |
+| answer | The answer text |
+| category | Topic (Registration, Fees, ...) |
+| views | How many times it was viewed |
 | date_added | Date the FAQ was added |
 
 
