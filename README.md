@@ -18,6 +18,17 @@ Built for AWS SBG @ AASTU AI/ML learning track, Week 2 task: Data, APIs & Embedd
 | date_added | Date the FAQ was added |
 
 
+## Data cleaning
+
+| Problem | Function | Method |
+|---|---|---|
+| Messy text/case | `fix_text` | strip, collapse spaces, consistent categories |
+| Wrong types | `fix_types` | `to_numeric`, `to_datetime` (errors="coerce") |
+| Duplicates | `remove_duplicates` | `drop_duplicates` on question + answer |
+| Outliers | `handle_outliers` | IQR rule (NumPy percentiles) |
+| Missing values | `handle_missing` | drop rows with no answer, median fill for views |
+
+
 ## Setup
 
 1. Clone the repo and enter the folder:
@@ -36,6 +47,7 @@ Built for AWS SBG @ AASTU AI/ML learning track, Week 2 task: Data, APIs & Embedd
    ```bash
    pip install -r requirements.txt
    ```
+
 
 ## How to run
 
