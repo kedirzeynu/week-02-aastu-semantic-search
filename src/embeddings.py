@@ -1,4 +1,4 @@
-"""embeddings.py - turn text into vectors (slide 14)."""
+# embeddings.py - turn text into vectors.
 import re
 import zlib
 

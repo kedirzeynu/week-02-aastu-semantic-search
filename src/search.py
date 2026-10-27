@@ -1,4 +1,4 @@
-"""search.py - Mini Semantic Search: Pandas + NumPy + embeddings + Chroma (slides 18-19)."""
+# search.py - Mini Semantic Search: Pandas + NumPy + embeddings + Chroma.
 import sys
 
 import chromadb
@@ -55,19 +55,11 @@ def print_hits(query, hits):
 
 
 def numpy_search(df, embedder, query, k=3):
-    """The same search with pure NumPy (slides 15-16), to compare with Chroma."""
+    # The same search with pure NumPy (slides 15-16), to compare with Chroma.
     docs = embed_texts(embedder, df["text"])
     q = embed_texts(embedder, [query])[0]
     idx, scores = top_k(docs, q, k)
     return [(df.iloc[i]["id"], float(s)) for i, s in zip(idx, scores)]
-
-
-def slide_style_demo(texts, ids):
-    """Slide 18 exactly as shown, using Chroma's default embedding model."""
-    db = chromadb.Client()
-    col = db.get_or_create_collection("slide_demo")
-    col.add(documents=texts, ids=ids)
-    return col.query(query_texts=["When is registration?"], n_results=3)
 
 
 if __name__ == "__main__":

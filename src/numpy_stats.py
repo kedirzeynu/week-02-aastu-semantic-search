@@ -2,12 +2,6 @@
 import numpy as np
 
 
-def add_vat(prices, rate=0.15):
-    # Return prices with VAT added (vectorized, no loop).
-    prices = np.asarray(prices, dtype=float)
-    return prices * (1 + rate)
-
-
 def summarize(values):
     # Return a dict of key statistics for a list/array of numbers.
     values = np.asarray(values, dtype=float)
@@ -48,7 +42,6 @@ def normalize(values):
 
 
 if __name__ == "__main__":
-    print("VAT:", add_vat([85, 120, 200]))
 
     views = [120, 85, 240, 60, 15000, 310, 95]
     for name, value in summarize(views).items():

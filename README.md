@@ -1,39 +1,49 @@
 # AASTU Mini Semantic Search
 
-A semantic search engine over a dataset of university FAQs (Frequently Asked Questions).
-Built for AWS SBG @ AASTU AI/ML learning track, Week 2 task: Data, APIs & Embeddings.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/<your-username>/week-02-aastu-semantic-search/blob/main/notebooks/semantic-search.ipynb)
 
+A small search engine that finds university FAQs by **meaning**, not by matching keywords.
+Ask "I forgot my password" and it finds "How can I reset my login?" even though the two
+share almost no words.
 
-## Dataset
+Built for **AI/ML AWS AASTU Cohort 1, Week 2: Data, APIs & Embeddings**.
 
-`week-02-aastu-semantic-search/data/faq_raw.csv` holds 24 sample university FAQs (raw, intentionally messy).
+**Pipeline:**
+load a messy CSV (Pandas) → clean it with functions → process numbers with NumPy →
+prepare and chunk the text → embed it → store it in ChromaDB → query and print the top 3 matches.
 
-| Column | Meaning |
-|---|---|
-| id | FAQ number |
-| question | The question text |
-| answer | The answer text |
-| category | Topic (Registration, Fees, ...) |
-| views | How many times it was viewed |
-| date_added | Date the FAQ was added |
+> The FAQ data is **sample data for learning**, not official university policy.
 
+---
 
-## Data cleaning
+## Project structure
 
-| Problem | Function | Method |
-|---|---|---|
-| Messy text/case | `fix_text` | strip, collapse spaces, consistent categories |
-| Wrong types | `fix_types` | `to_numeric`, `to_datetime` (errors="coerce") |
-| Duplicates | `remove_duplicates` | `drop_duplicates` on question + answer |
-| Outliers | `handle_outliers` | IQR rule (NumPy percentiles) |
-| Missing values | `handle_missing` | drop rows with no answer, median fill for views |
+```
+week-02-aastu-semantic-search/
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── data/
+│   └── faq_raw.csv              raw, deliberately messy dataset
+├── notebooks/
+│   └── semantic-search.ipynb    the full pipeline with saved outputs
+└── src/
+    ├── load_data.py             load the CSV and take a first look
+    ├── cleaning.py              the cleaning functions
+    ├── numpy_stats.py           statistics with NumPy
+    ├── text_prep.py             clean text, tokenize, chunk
+    ├── embeddings.py            text -> 384-number vectors
+    ├── similarity.py            cosine similarity and top-k neighbors
+    └── search.py                ChromaDB storage and semantic search
+```
 
+---
 
-## Setup
+## Setup (virtual environment)
 
-1. Clone the repo and enter the folder:
+1. Clone the repository and enter the folder:
    ```bash
-   git clone <https://github.com/kedirzeynu/week-02-aastu-semantic-search.git>
+   git clone https://github.com/<your-username>/week-02-aastu-semantic-search.git
    cd week-02-aastu-semantic-search
    ```
 2. Create a virtual environment:
@@ -42,83 +52,124 @@ Built for AWS SBG @ AASTU AI/ML learning track, Week 2 task: Data, APIs & Embedd
    ```
 3. Activate it:
    - Windows: `.venv\Scripts\activate`
-   - Mac/Linux: `source .venv/bin/activate`
-4. Install dependencies:
+   - Mac / Linux: `source .venv/bin/activate`
+4. Install the dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
+The `.venv/` folder (and `__pycache__/`) is excluded from Git by `.gitignore`.
+
+> **First run needs internet.** The embedding model (`all-MiniLM-L6-v2`, about 80 MB)
+> downloads once and is then cached on your machine.
+
+---
 
 ## How to run
 
-1. Run the loader to load the data:
-   ```bash
-   python week-02-aastu-semantic-search/src/load_data.py
-   ```
+Run these from the project root, with the virtual environment activated.
 
-NB: The `.venv/` folder is excluded from Git via `.gitignore`.
-
-
-
-
-# AASTU Mini Semantic Search
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/<your-username>/aastu-semantic-search/blob/main/week-02/notebooks/semantic_search.ipynb)
-
-Semantic search over a messy FAQ dataset: load with Pandas, clean with functions,
-process with NumPy, embed, store in Chroma, and return the top 3 matches.
-Built for AI/ML AWS AASTU Cohort 1, Week 2 (Data, APIs & Embeddings).
-
-## Project structure
-```
-.
-├── README.md
-├── requirements.txt
-├── .gitignore
-├── .env.example
-└── week-02/
-    ├── data/       faq_raw.csv, faq_clean.csv, courses.json
-    ├── notebooks/  semantic_search.ipynb
-    └── src/        load_data, cleaning, numpy_stats, text_prep,
-                    api_demo, embeddings, similarity, search
-```
-
-## Setup (virtual environment)
-1. `git clone https://github.com/<your-username>/aastu-semantic-search.git`
-2. `cd aastu-semantic-search`
-3. Create a venv: `python -m venv venv`
-4. Activate it: Windows `venv\Scripts\activate`, Mac/Linux `source venv/bin/activate`
-5. Install: `pip install -r requirements.txt`
-
-`venv/` is excluded from Git by `.gitignore`.
-
-## How to run
 ```bash
-python week-02/src/load_data.py     # first look at the raw data
-python week-02/src/cleaning.py      # clean it, write faq_clean.csv
-python week-02/src/text_prep.py     # tokens and chunking demo
-python week-02/src/similarity.py    # cosine + brute-force timing
-python week-02/src/search.py        # semantic search, top 3 matches
-python week-02/src/search.py "your own question"
+python src/load_data.py        # first look at the raw data
+python src/cleaning.py         # before/after cleaning report
+python src/text_prep.py        # tokens and chunking demo
+python src/similarity.py       # cosine similarity demo
+python src/search.py           # semantic search with three sample questions
+python src/search.py "how do I get back into my account"   # your own question
 ```
-Notebook: `pip install notebook`, then `jupyter notebook week-02/notebooks/semantic_search.ipynb`,
-or click the Colab badge above. The first run downloads a ~80 MB embedding model (internet needed once).
+
+### The notebook
+
+- **Locally:** `pip install notebook`, then open `notebooks/semantic-search.ipynb` in
+  Jupyter or VS Code and choose **Run All**. Select the `.venv` interpreter as the kernel.
+- **Colab:** click the **Open In Colab** badge at the top. The first cell clones this
+  repository and installs `requirements.txt` automatically (the repository must be public).
+
+---
 
 ## Example queries
-(paste your REAL output here)
+
+*(Replace the lines below with the real output from `python src/search.py`.)*
+
 ```
 Query: "I forgot my password"
-  1. [..] (Accounts) ...
+  1. [score] (category) ...
+  2. [score] (category) ...
+  3. [score] (category) ...
+
+Query: "When is registration?"
+  1. [score] (category) ...
+
+Query: "Where can I study quietly?"
+  1. [score] (category) ...
 ```
 
+---
+
 ## Dataset
-(keep your Day 2 table and the "Data issues found" list)
+
+`data/faq_raw.csv` holds 24 sample university FAQs. It is **raw and intentionally messy**
+and is never edited by hand; all fixes happen in code.
+
+| Column | Meaning |
+|---|---|
+| `id` | FAQ number |
+| `question` | The question text |
+| `answer` | The answer text |
+| `category` | Topic (Registration, Fees, Accounts, ...) |
+| `views` | How many times the FAQ was viewed |
+| `date_added` | Date the FAQ was added |
+
+Problems built into the data: blank values, a duplicate row, inconsistent category text
+(`ACCOUNTS`, `registration `), `views` stored as text with commas (`"1,200"`), two extreme
+outliers (15000 and 99999), and dates in mixed formats (one is `not sure`).
+
+---
 
 ## Data cleaning
-(keep your Day 3 table and decisions)
 
-## APIs and secrets
-(keep your Day 4 section)
+All cleaning lives in `src/cleaning.py` as named functions. `clean_faqs()` runs them in
+the order shown, and the table is also the order in which they must run.
+
+| Problem | Function | Method |
+|---|---|---|
+| Messy text / case | `fix_text` | strip spaces, collapse repeated spaces, tidy category labels (keeps `IT` uppercase) |
+| Wrong types | `fix_types` | remove commas then `pd.to_numeric(errors="coerce")`; `pd.to_datetime(format="mixed", errors="coerce")` |
+| Duplicates | `remove_duplicates` | `drop_duplicates` on question + answer |
+| Outliers | `handle_outliers` | IQR rule using NumPy percentiles; outliers become blank |
+| Missing values | `handle_missing` | drop rows with no answer, fill `views` with the median, label missing categories `Unknown` |
+
+Result: **24 rows → 21 rows**. Decisions worth knowing:
+- Text is fixed **before** duplicates are removed, because two rows that differ only by
+  extra spaces only match after trimming.
+- Outliers are blanked **before** the median fill, so one rule handles both problems.
+- One unparseable date (`not sure`) is left blank, because dates are not used for search.
+
+---
+
+## NumPy and text preparation
+
+- `src/numpy_stats.py` uses NumPy for `mean`, `median`, `std`, `min`/`max`, `percentile`
+  and `where` (summary statistics, the IQR outlier rule and 0–1 scaling).
+- `src/similarity.py` uses NumPy for the dot product, `linalg.norm` (cosine similarity) and
+  `argsort` (the top-k nearest neighbors).
+- `src/text_prep.py` lowercases and tokenizes text, and provides `chunk_words` for long
+  documents. Each FAQ is only about 16–23 tokens, so it is already chunk-sized and the search
+  embeds **one FAQ per chunk**.
+
+---
+
+## How the search works
+
+1. **Embed:** each FAQ (question + answer) becomes a vector of 384 numbers.
+2. **Store:** vectors go into ChromaDB with `category` and `views` saved beside them.
+3. **Ask:** the question is embedded the same way.
+4. **Top-k:** Chroma returns the 3 vectors with the highest **cosine similarity**
+   (`score = 1 - distance`, so higher is better).
+5. **Filter (optional):** `search(..., where={"category": "Fees"})` combines meaning with conditions.
+
+---
 
 ## What I learned
-(3-4 sentences)
+
+*(Write 3–4 sentences in your own words.)*

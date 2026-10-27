@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd
 
-from load_data import DATA_DIR, load_faqs
+from load_data import load_faqs
 from numpy_stats import iqr_bounds, normalize
 
 ACRONYMS = {"it": "IT"}   # labels that must stay uppercase
@@ -83,11 +83,6 @@ def clean_faqs(df):
     return add_features(df)
 
 
-def save_clean(df, filename="faq_clean.csv"):
-    # Write the cleaned data to a NEW file (the raw file is never touched).
-    df.to_csv(DATA_DIR / filename, index=False)
-
-
 if __name__ == "__main__":
     raw = load_faqs()
     quality_report(raw, "BEFORE")
@@ -96,5 +91,3 @@ if __name__ == "__main__":
     print(clean[["id", "category", "views", "date_added", "views_scaled"]])
     print(clean["category"].value_counts())
     print(clean.dtypes)
-    save_clean(clean)
-    print("Saved faq_clean.csv")
