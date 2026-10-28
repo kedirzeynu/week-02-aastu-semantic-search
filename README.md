@@ -43,7 +43,7 @@ week-02-aastu-semantic-search/
 
 1. Clone the repository and enter the folder:
    ```bash
-   git clone https://github.com/<your-username>/week-02-aastu-semantic-search.git
+   git clone https://github.com/kedirzeynu/week-02-aastu-semantic-search.git
    cd week-02-aastu-semantic-search
    ```
 2. Create a virtual environment:
