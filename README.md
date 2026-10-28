@@ -85,25 +85,6 @@ python src/search.py "how do I get back into my account"   # your own question
 
 ---
 
-## Example queries
-
-*(Replace the lines below with the real output from `python src/search.py`.)*
-
-```
-Query: "I forgot my password"
-  1. [score] (category) ...
-  2. [score] (category) ...
-  3. [score] (category) ...
-
-Query: "When is registration?"
-  1. [score] (category) ...
-
-Query: "Where can I study quietly?"
-  1. [score] (category) ...
-```
-
----
-
 ## Dataset
 
 `data/faq_raw.csv` holds 24 sample university FAQs. It is **raw and intentionally messy**
