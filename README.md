@@ -146,9 +146,3 @@ Result: **24 rows → 21 rows**. Decisions worth knowing:
 4. **Top-k:** Chroma returns the 3 vectors with the highest **cosine similarity**
    (`score = 1 - distance`, so higher is better).
 5. **Filter (optional):** `search(..., where={"category": "Fees"})` combines meaning with conditions.
-
----
-
-## What I learned
-
-*(Write 3–4 sentences in your own words.)*
