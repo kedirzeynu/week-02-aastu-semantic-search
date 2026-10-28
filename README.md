@@ -1,7 +1,5 @@
 # AASTU Mini Semantic Search
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/<your-username>/week-02-aastu-semantic-search/blob/main/notebooks/semantic-search.ipynb)
-
 A small search engine that finds university FAQs by **meaning**, not by matching keywords.
 Ask "I forgot my password" and it finds "How can I reset my login?" even though the two
 share almost no words.
